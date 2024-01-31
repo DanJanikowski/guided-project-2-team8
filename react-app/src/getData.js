@@ -27,3 +27,9 @@ export async function getPlanets() {
   let planets = await fetch(url).then((res) => res.json());
   return planets;
 }
+
+export async function getFilm(id) {
+  const url = `/api/films/${id}`;
+  let films = await fetch(url).then((res) => res.json());
+  return films;
+}
