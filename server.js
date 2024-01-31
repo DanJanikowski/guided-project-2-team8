@@ -80,6 +80,18 @@ app.get("/api/:collection/:id/:sub", async (req, res) => {
           let homeworld = await planets.findOne({"id": character.homeworld});
           console.log(homeworld);
           res.json(homeworld);
+          break;
+        }
+        else if (req.params["sub"] === 'films') {
+          let items = [];
+          const collection = database.collection('films_characters');
+          const filmToChars = await collection.find({ "character_id": parseInt(req.params["id"]) }).toArray();
+          const films = database.collection('films');
+          for (let filmToChar of filmToChars) {
+            let item = await films.findOne({"id": filmToChar.film_id});
+            items.push(item);
+          }
+          res.json(items);
         }
         break;
     }
