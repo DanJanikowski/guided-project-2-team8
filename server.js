@@ -6,24 +6,71 @@ const app = express();
 
 app.use(express.json());
 
+// Connect to MongoDB
+const url = "mongodb://localhost:27017";
+const dbName = "swapi";
+let database;
+async function startup() {
+  const client = await MongoClient.connect(url);
+  database = client.db("swapi");
+}
+startup();
+
+// Routes
 app.all("*", (req, res, next) => {
   console.log(req.url);
   next();
 });
 
 //Serve all the people at GET /people
-app.get("/api/planets", async (req, res) => {
+app.get("/api/:collection", async (req, res) => {
   try {
-    const client = await MongoClient.connect("mongodb://localhost:27017");
-    const db = client.db("swapi");
-    const collection = db.collection("planets");
-    const planets = await collection.find().toArray();
-    client.close();
-    res.json(planets);
+    const collection = database.collection(req.params["collection"]);
+    const characters = await collection.find().toArray();
+    res.json(characters);
   } catch (error) {
     res.status(500).json({ error: error });
   }
 });
+
+app.get("/api/:collection/:id", async (req, res) => {
+  try {
+    // console.log(req.params["collection"]);
+    // console.log(req.params["id"]);
+    const collection = database.collection(req.params["collection"]);
+    const characters = await collection
+      .findOne({ id: req.params["id"] })
+      .toArray();
+    res.json(characters);
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+});
+
+app.get("/api/:collection/:id/:sub", async (req, res) => {
+  console.log(`Tier 3`);
+  console.log(req.params);
+});
+
+// app.get("/api/characters", async (req, res) => {
+//   try {
+//     const collection = database.collection("characters");
+//     const characters = await collection.find().toArray();
+//     res.json(characters);
+//   } catch (error) {
+//     res.status(500).json({ error: error });
+//   }
+// });
+
+// app.get("/api/planets", async (req, res) => {
+//   try {
+//     const collection = database.collection("planets");
+//     const planets = await collection.find().toArray();
+//     res.json(planets);
+//   } catch (error) {
+//     res.status(500).json({ error: error });
+//   }
+// });
 
 // //Serve all the people at GET /people
 // app.get("/api/people", async (req, res) => {
