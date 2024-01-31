@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
-import "./App.css";
 import { Planets } from "./Planets";
-import { getPlanets } from "./getPlanets";
+import { Characters } from "./Characters";
+import { getPlanets, getCharacters } from "./getData";
 
 function App() {
-  let [planets, setPlanets] = useState([]);
+  let [characters, setCharacters] = useState([]);
   useEffect(() => {
-    getPlanets().then((planets) => setPlanets(planets));
+    getCharacters().then((characters) => setCharacters(characters));
   }, []);
   return (
     <>
-      <Planets planets={planets} header="Planets" />
+      <Characters characters={characters} />
+      {/* <Planets /> */}
     </>
   );
 }
