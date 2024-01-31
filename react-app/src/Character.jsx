@@ -48,7 +48,7 @@ export function Character() {
       {films.map((film) => {
         return (
           <button key={film.title}>
-            <Link>{film.title}</Link>
+            <Link to={`/films/${film.id}`}>{film.title}</Link>
           </button>
         );
       })}
