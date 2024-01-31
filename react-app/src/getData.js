@@ -27,3 +27,9 @@ export async function getPlanets() {
   let planets = await fetch(url).then((res) => res.json());
   return planets;
 }
+
+export async function getPlanet(id) {
+  const url = `/api/planets/${id}`;
+  let planet = await fetch(url).then((res) => res.json());
+  return planet;
+}
