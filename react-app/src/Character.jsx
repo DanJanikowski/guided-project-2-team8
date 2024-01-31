@@ -1,6 +1,10 @@
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getCharacter, getCharacterHomeworld } from "./getData";
+import {
+  getCharacter,
+  getCharacterFilms,
+  getCharacterHomeworld,
+} from "./getData";
 
 export function Character() {
   const params = useParams();
@@ -9,15 +13,23 @@ export function Character() {
 
   let [character, setCharacter] = useState({});
   let [homeworld, setHomeworld] = useState({});
+  let [films, setFilms] = useState([]);
 
   useEffect(() => {
     getCharacter(characterID).then((character) => setCharacter(character));
   }, []);
 
   useEffect(() => {
-    getCharacterHomeworld(character.id).then((homeworld) =>
+    getCharacterHomeworld(characterID).then((homeworld) =>
       setHomeworld(homeworld)
     );
+  }, [character]);
+
+  useEffect(() => {
+    getCharacterFilms(character.id).then((films) => {
+      console.log(films);
+      setFilms(films);
+    });
   }, [character]);
 
   return (
@@ -28,7 +40,18 @@ export function Character() {
       <p>Born: {character.birth_year}</p>
 
       <h2>Homeworld</h2>
-      <Link>{homeworld.name}</Link>
+      <button>
+        <Link to={`/planets/${homeworld.id}`}>{homeworld.name}</Link>
+      </button>
+
+      <h2>Films appeared in</h2>
+      {films.map((film) => {
+        return (
+          <button key={film.title}>
+            <Link>{film.title}</Link>
+          </button>
+        );
+      })}
     </>
   );
 }

@@ -16,6 +16,12 @@ export async function getCharacterHomeworld(id) {
   return homeworld;
 }
 
+export async function getCharacterFilms(id) {
+  const url = `/api/characters/${id}/films`;
+  let films = await fetch(url).then((res) => res.json());
+  return films;
+}
+
 export async function getPlanets() {
   const url = `/api/planets`;
   let planets = await fetch(url).then((res) => res.json());
