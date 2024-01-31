@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getCharacter, getCharacterHomeworld } from "./getData";
 
@@ -11,16 +11,14 @@ export function Character() {
   let [homeworld, setHomeworld] = useState({});
 
   useEffect(() => {
-    getCharacter(characterID)
-      .then((character) => setCharacter(character))
-      .then(() => setHomeworld(getCharacterHomeworld(character.id)));
+    getCharacter(characterID).then((character) => setCharacter(character));
   }, []);
 
-  //   useEffect(() => {
-  //     getCharacterHomeworld(character.homeworld).then((homeworld) =>
-  //       setHomeworld(homeworld)
-  //     );
-  //   }, []);
+  useEffect(() => {
+    getCharacterHomeworld(character.id).then((homeworld) =>
+      setHomeworld(homeworld)
+    );
+  }, [character]);
 
   return (
     <>
@@ -30,6 +28,7 @@ export function Character() {
       <p>Born: {character.birth_year}</p>
 
       <h2>Homeworld</h2>
+      <Link>{homeworld.name}</Link>
     </>
   );
 }
