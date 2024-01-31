@@ -1,4 +1,5 @@
 import { getCharacter } from "./getData";
+import { Link } from "react-router-dom";
 
 export function Characters({ characters }) {
   console.log(characters);
@@ -7,13 +8,9 @@ export function Characters({ characters }) {
       <h1>Star Wars Universe Lookup</h1>
       {characters.map((character) => {
         return (
-          <div
-            handleClick={getCharacter(character._id)}
-            className="box"
-            key={character.name}
-          >
-            <h3>{character.name}</h3>
-          </div>
+          <button key={character.name}>
+            <Link to={`/characters/${character.id}`}>{character.name}</Link>
+          </button>
         );
       })}
     </>

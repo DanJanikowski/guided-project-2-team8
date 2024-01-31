@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { Planets } from "./Planets";
 import { Characters } from "./Characters";
+import { Character } from "./Character";
 import { getPlanets, getCharacters } from "./getData";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   let [characters, setCharacters] = useState([]);
@@ -10,7 +12,13 @@ function App() {
   }, []);
   return (
     <>
-      <Characters characters={characters} />
+      <Routes>
+        <Route
+          path="/"
+          element={<Characters characters={characters} />}
+        ></Route>
+        <Route path="/characters/:id" element={<Character />} />
+      </Routes>
       {/* <Planets /> */}
     </>
   );
