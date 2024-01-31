@@ -71,6 +71,17 @@ app.get("/api/:collection/:id/:sub", async (req, res) => {
         }
         res.json(items);
         break;
+
+      case 'characters':
+        if (req.params["sub"] === 'planet') {
+          const characters = database.collection('characters');
+          const character = await characters.findOne({ "id": parseInt(req.params["id"]) });
+          const planets = database.collection('planets');
+          let homeworld = await planets.findOne({"id": character.homeworld});
+          console.log(homeworld);
+          res.json(homeworld);
+        }
+        break;
     }
   } catch (error) {
     res.status(500).json({ error: error });
