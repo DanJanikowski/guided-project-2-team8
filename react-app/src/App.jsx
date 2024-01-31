@@ -5,7 +5,7 @@ import { Film } from "./Film"
 import { Characters } from "./Characters";
 import { Character } from "./Character";
 import { getPlanets, getCharacters } from "./getData";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Link } from "react-router-dom";
 
 function App() {
   let [characters, setCharacters] = useState([]);
@@ -14,6 +14,9 @@ function App() {
   }, []);
   return (
     <>
+    <button>
+    <Link to={`/`}>Home</Link>
+    </button>
       <Routes>
         <Route
           path="/"

@@ -23,14 +23,14 @@ export function Character() {
     getCharacterHomeworld(characterID).then((homeworld) =>
       setHomeworld(homeworld)
     );
-  }, [character]);
+  }, []);
 
   useEffect(() => {
-    getCharacterFilms(character.id).then((films) => {
+    getCharacterFilms(characterID).then((films) => {
       console.log(films);
       setFilms(films);
     });
-  }, [character]);
+  }, []);
 
   return (
     <>

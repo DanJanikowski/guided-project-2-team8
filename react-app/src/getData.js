@@ -38,3 +38,8 @@ export async function getFilm(id) {
   let films = await fetch(url).then((res) => res.json());
   return films;
 }
+export async function getFilmCharacters(id) {
+  const url = `/api/films/${id}/characters`;
+  let characters = await fetch(url).then((res) => res.json());
+  return characters;
+}
