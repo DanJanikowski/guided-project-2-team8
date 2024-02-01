@@ -25,13 +25,15 @@ export function Film() {
       <p>Director: {film.director}</p>
       <p>Release Date: {film.release_date}</p>
       <h2>Appearing Characters</h2>
-      {characters.map((character) => {
-        return (
-          <button key={character.name}>
-            <Link to={`/characters/${character.id}`}>{character.name}</Link>
-          </button>
-        );
-      })}
+      <div className="btnBox">
+        {characters.map((character) => {
+          return (
+            <button key={character.name}>
+              <Link to={`/characters/${character.id}`}>{character.name}</Link>
+            </button>
+          );
+        })}
+      </div>
     </>
   );
 }

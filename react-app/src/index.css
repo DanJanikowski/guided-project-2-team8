@@ -1,0 +1,56 @@
+:root {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+
+  --btnColor: rgb(0, 108, 158);
+  --backgroundColor: black;
+  --headerColor: rgb(255, 227, 170);
+  color: var(--headerColor);
+}
+
+body {
+  background-color: var(--backgroundColor);
+}
+
+p {
+  text-align: center;
+  font-weight: bold;
+  color: var(--btnColor);
+}
+
+h1,
+h2 {
+  color: var(--headerColor);
+  display: flex;
+  justify-content: center;
+  text-shadow: -5px -5px 5px rgb(209, 0, 0);
+}
+
+button {
+  background-color: var(--btnColor);
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 3px 10px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--headerColor);
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-weight: bold;
+  text-shadow: -1px -1px 1px rgb(0, 0, 0);
+}
+
+.btnBox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.charStats {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}

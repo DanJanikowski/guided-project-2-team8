@@ -9,11 +9,11 @@ export function Characters() {
   useEffect(() => {
     getCharacters().then((characters) => setCharacters(characters));
   }, []);
-  
+
   useEffect(() => {
     getFilms().then((films) => setFilms(films));
   }, []);
-  
+
   useEffect(() => {
     getPlanets().then((planets) => setPlanets(planets));
   }, []);
@@ -21,29 +21,35 @@ export function Characters() {
     <>
       <h1>Star Wars Universe Lookup</h1>
       <h2>Characters</h2>
-      {characters.map((character) => {
-        return (
-          <button key={character.name}>
-            <Link to={`/characters/${character.id}`}>{character.name}</Link>
-          </button>
-        );
-      })}
+      <div className="btnBox">
+        {characters.map((character) => {
+          return (
+            <button key={character.name}>
+              <Link to={`/characters/${character.id}`}>{character.name}</Link>
+            </button>
+          );
+        })}
+      </div>
       <h2>Films</h2>
-      {films.map((film) => {
-        return (
-          <button key={film.title}>
-            <Link to={`/films/${film.id}`}>{film.title}</Link>
-          </button>
-        );
-      })}
+      <div className="btnBox">
+        {films.map((film) => {
+          return (
+            <button key={film.title}>
+              <Link to={`/films/${film.id}`}>{film.title}</Link>
+            </button>
+          );
+        })}
+      </div>
       <h2>Planets</h2>
-      {planets.map((planet) => {
-        return (
-          <button key={planet.name}>
-            <Link to={`/planets/${planet.id}`}>{planet.name}</Link>
-          </button>
-        );
-      })}
+      <div className="btnBox">
+        {planets.map((planet) => {
+          return (
+            <button key={planet.name}>
+              <Link to={`/planets/${planet.id}`}>{planet.name}</Link>
+            </button>
+          );
+        })}
+      </div>
     </>
   );
 }

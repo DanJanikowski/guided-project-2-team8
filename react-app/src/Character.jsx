@@ -33,23 +33,29 @@ export function Character() {
   return (
     <>
       <h1>{character.name}</h1>
-      <p>Height: {character.height} cm</p>
-      <p>Mass: {character.mass} kg</p>
-      <p>Born: {character.birth_year}</p>
+      <div className="charStats">
+        <p>Height: {character.height} cm</p>
+        <p>Mass: {character.mass} kg</p>
+        <p>Born: {character.birth_year}</p>
+      </div>
 
       <h2>Homeworld</h2>
-      <button>
-        <Link to={`/planets/${homeworld.id}`}>{homeworld.name}</Link>
-      </button>
+      <div className="btnBox">
+        <button>
+          <Link to={`/planets/${homeworld.id}`}>{homeworld.name}</Link>
+        </button>
+      </div>
 
       <h2>Films appeared in</h2>
-      {films.map((film) => {
-        return (
-          <button key={film.title}>
-            <Link to={`/films/${film.id}`}>{film.title}</Link>
-          </button>
-        );
-      })}
+      <div className="btnBox">
+        {films.map((film) => {
+          return (
+            <button key={film.title}>
+              <Link to={`/films/${film.id}`}>{film.title}</Link>
+            </button>
+          );
+        })}
+      </div>
     </>
   );
 }
