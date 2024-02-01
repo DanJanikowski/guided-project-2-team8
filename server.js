@@ -7,11 +7,9 @@ const app = express();
 app.use(express.json());
 
 // Connect to MongoDB
-const url = "mongodb://localhost:27017";
-const dbName = "swapi";
 let database;
 async function startup() {
-  const client = await MongoClient.connect(url);
+  const client = await MongoClient.connect("mongodb://localhost:27017");
   database = client.db("swapi");
 }
 startup();
@@ -78,7 +76,6 @@ app.get("/api/:collection/:id/:sub", async (req, res) => {
           const character = await characters.findOne({ "id": parseInt(req.params["id"]) });
           const planets = database.collection('planets');
           let homeworld = await planets.findOne({"id": character.homeworld});
-          console.log(homeworld);
           res.json(homeworld);
           break;
         }

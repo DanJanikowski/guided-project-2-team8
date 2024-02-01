@@ -1,16 +1,10 @@
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getFilm, getFilmCharacters } from "./getData";
-// import {
-//   getCharacter,
-//   getCharacterFilms,
-//   getCharacterHomeworld,
-// } from "./getData";
 
 export function Film() {
   const params = useParams();
   let filmID = params.id;
-  console.log(filmID);
 
   let [film, setFilm] = useState({});
   let [characters, setCharacters] = useState([]);

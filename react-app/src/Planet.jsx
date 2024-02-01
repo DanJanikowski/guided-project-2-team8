@@ -5,13 +5,11 @@ import { getPlanet } from "./getData";
 export function Planet() {
   const params = useParams();
   let planetID = params.id;
-  console.log(planetID);
 
   let [planet, setPlanet] = useState({});
 
   useEffect(() => {
     getPlanet(planetID).then((planet) => {
-      console.log(planet);
       setPlanet(planet);
     });
   }, []);

@@ -9,7 +9,6 @@ import {
 export function Character() {
   const params = useParams();
   let characterID = params.id;
-  console.log(characterID);
 
   let [character, setCharacter] = useState({});
   let [homeworld, setHomeworld] = useState({});
@@ -27,7 +26,6 @@ export function Character() {
 
   useEffect(() => {
     getCharacterFilms(characterID).then((films) => {
-      console.log(films);
       setFilms(films);
     });
   }, []);

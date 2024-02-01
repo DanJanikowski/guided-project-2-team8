@@ -1,7 +1,6 @@
 // import { getPlanets } from "./getPlanets";
 
 export function Planets({ planets }) {
-  console.log(planets);
   if (!planets || planets.length === 0) return undefined;
   return (
     <>

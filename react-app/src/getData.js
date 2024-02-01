@@ -33,6 +33,11 @@ export async function getPlanet(id) {
   let planet = await fetch(url).then((res) => res.json());
   return planet;
 }
+export async function getFilms() {
+  const url = `/api/films`;
+  let films = await fetch(url).then((res) => res.json());
+  return films;
+}
 export async function getFilm(id) {
   const url = `/api/films/${id}`;
   let films = await fetch(url).then((res) => res.json());
