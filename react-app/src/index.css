@@ -1,7 +1,6 @@
-:root {
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+/* @import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap"); */
 
+:root {
   --btnColor: rgb(0, 108, 158);
   --backgroundColor: black;
   --headerColor: rgb(255, 227, 170);
@@ -10,12 +9,20 @@
 
 body {
   background-color: var(--backgroundColor);
+  font-family: "Dela Gothic One", sans-serif;
 }
 
 p {
-  text-align: center;
-  font-weight: bold;
+  /* text-align: center; */
+
+  /* font-weight: bold; */
   color: var(--btnColor);
+  background-color: rgb(186, 234, 250);
+  border: rgb(11, 11, 106) 2px solid;
+
+  margin: 20px;
+  border-radius: 10px;
+  padding: 10px;
 }
 
 h1,
@@ -24,23 +31,27 @@ h2 {
   display: flex;
   justify-content: center;
   text-shadow: -5px -5px 5px rgb(209, 0, 0);
+  font-family: "Rubik Mono One", monospace;
 }
 
 button {
   background-color: var(--btnColor);
-  border: none;
+  border: var(--headerColor) 1px solid;
   border-radius: 5px;
-  margin: 5px;
-  padding: 3px 10px;
+  margin: 10px;
+  padding: 10px;
 }
 
 a {
   text-decoration: none;
   color: var(--headerColor);
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  /* font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", */
+  /* "Lucida Sans", Arial, sans-serif; */
+  /* font-weight: bold; */
+  font-family: "Nanum Gothic", sans-serif;
+  /* text-shadow: -1px -1px 1px rgb(0, 0, 0); */
+  font-size: large;
   font-weight: bold;
-  text-shadow: -1px -1px 1px rgb(0, 0, 0);
 }
 
 .btnBox {
@@ -53,4 +64,19 @@ a {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+}
+
+.filmInfo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  /* flex-direction: column; */
+}
+
+.planetInfo {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

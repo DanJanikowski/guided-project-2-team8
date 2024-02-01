@@ -20,10 +20,12 @@ export function Film() {
   return (
     <>
       <h1>{film.title}</h1>
-      <p>{film.opening_crawl}</p>
-      <p>Producer(s): {film.producer}</p>
-      <p>Director: {film.director}</p>
-      <p>Release Date: {film.release_date}</p>
+      <div className="filmInfo">
+        <p>{film.opening_crawl}</p>
+        <p>Director: {film.director}</p>
+        <p>Producer(s): {film.producer}</p>
+        <p>Release Date: {film.release_date}</p>
+      </div>
       <h2>Appearing Characters</h2>
       <div className="btnBox">
         {characters.map((character) => {

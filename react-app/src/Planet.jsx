@@ -17,9 +17,11 @@ export function Planet() {
   return (
     <>
       <h1>{planet.name}</h1>
-      <p>Climate: {planet.climate}</p>
-      <p>Population: {planet.population}</p>
-      <p>Gravity: {planet.gravity}</p>
+      <div className="planetInfo">
+        <p>Climate: {planet.climate}</p>
+        <p>Population: {planet.population}</p>
+        <p>Gravity: {planet.gravity}</p>
+      </div>
     </>
   );
 }
