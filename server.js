@@ -34,7 +34,7 @@ app.get("/api/:collection", async (req, res) => {
 app.get("/api/:collection/:id", async (req, res) => {
   try {
     const collection = database.collection(req.params["collection"]);
-    const item = await collection.findOne({ "id": parseInt(req.params["id"]) });
+    const item = await collection.findOne({ id: parseInt(req.params["id"]) });
     res.json(item);
   } catch (error) {
     res.status(500).json({ error: error });
@@ -46,46 +46,54 @@ app.get("/api/:collection/:id", async (req, res) => {
 // Then follow that up by getting an array of all the characters from their ids
 app.get("/api/:collection/:id/:sub", async (req, res) => {
   try {
-    switch(req.params["collection"]) {
-      case 'films':
+    switch (req.params["collection"]) {
+      case "films":
         let items = [];
-        if (req.params["sub"] === 'characters') {
-          const collection = database.collection('films_characters');
-          const filmToChars = await collection.find({ "film_id": parseInt(req.params["id"]) }).toArray();
-          const characters = database.collection('characters');
+        if (req.params["sub"] === "characters") {
+          const collection = database.collection("films_characters");
+          const filmToChars = await collection
+            .find({ film_id: parseInt(req.params["id"]) })
+            .toArray();
+          const characters = database.collection("characters");
           for (let filmToChar of filmToChars) {
-            let item = await characters.findOne({"id": filmToChar.character_id});
+            let item = await characters.findOne({
+              id: filmToChar.character_id,
+            });
             items.push(item);
           }
-        }
-        else if (req.params["sub"] === 'planets') {
-          const collection = database.collection('films_planets');
-          const filmToPlanets = await collection.find({ "film_id": parseInt(req.params["id"]) }).toArray();
-          const planets = database.collection('planets');
+        } else if (req.params["sub"] === "planets") {
+          const collection = database.collection("films_planets");
+          const filmToPlanets = await collection
+            .find({ film_id: parseInt(req.params["id"]) })
+            .toArray();
+          const planets = database.collection("planets");
           for (let filmToPlanet of filmToPlanets) {
-            let item = await planets.findOne({"id": filmToPlanet.planet_id});
+            let item = await planets.findOne({ id: filmToPlanet.planet_id });
             items.push(item);
           }
         }
         res.json(items);
         break;
 
-      case 'characters':
-        if (req.params["sub"] === 'planet') {
-          const characters = database.collection('characters');
-          const character = await characters.findOne({ "id": parseInt(req.params["id"]) });
-          const planets = database.collection('planets');
-          let homeworld = await planets.findOne({"id": character.homeworld});
+      case "characters":
+        if (req.params["sub"] === "planet") {
+          const characters = database.collection("characters");
+          const character = await characters.findOne({
+            id: parseInt(req.params["id"]),
+          });
+          const planets = database.collection("planets");
+          let homeworld = await planets.findOne({ id: character.homeworld });
           res.json(homeworld);
           break;
-        }
-        else if (req.params["sub"] === 'films') {
+        } else if (req.params["sub"] === "films") {
           let items = [];
-          const collection = database.collection('films_characters');
-          const filmToChars = await collection.find({ "character_id": parseInt(req.params["id"]) }).toArray();
-          const films = database.collection('films');
+          const collection = database.collection("films_characters");
+          const filmToChars = await collection
+            .find({ character_id: parseInt(req.params["id"]) })
+            .toArray();
+          const films = database.collection("films");
           for (let filmToChar of filmToChars) {
-            let item = await films.findOne({"id": filmToChar.film_id});
+            let item = await films.findOne({ id: filmToChar.film_id });
             items.push(item);
           }
           res.json(items);
